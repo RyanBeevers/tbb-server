@@ -69,21 +69,41 @@ EMAIL, FIRST_NAME, LAST_NAME, FIRST_TIME_LOGIN, PASSWORD, PERSONAL_PHONE, ROLE_T
 'password', '123-123-1234', 'user', 'Lawn mowing summer job', '999-999-9999');
 
 INSERT INTO CHALLENGE_QUESTIONS (USER_ID, CHALLENGE_QUESTION, CHALLENGE_ANSWER) VALUES
-(1000, "What is your mothers maiden name?", "Femling");
+(1000, 'What is your mothers maiden name?', 'Femling');
 INSERT INTO CHALLENGE_QUESTIONS (USER_ID, CHALLENGE_QUESTION, CHALLENGE_ANSWER) VALUES
-(1000, "What is your fathers middle name?", "Femling");
+(1000, 'What is your fathers middle name?", "Vincent');
 
 INSERT INTO CHALLENGE_QUESTIONS (USER_ID, CHALLENGE_QUESTION, CHALLENGE_ANSWER) VALUES
-(1001, "What is your mothers maiden name?", "Femling");
+(1001, 'What is your mothers maiden name?', 'Femling');
 INSERT INTO CHALLENGE_QUESTIONS (USER_ID, CHALLENGE_QUESTION, CHALLENGE_ANSWER) VALUES
-(1001, "What is your fathers middle name?", "Femling");
+(1001, 'What is your fathers middle name?', 'Vincent');
 
 INSERT INTO CHALLENGE_QUESTIONS (USER_ID, CHALLENGE_QUESTION, CHALLENGE_ANSWER) VALUES
-(1002, "What is your mothers maiden name?", "Femling");
+(1002, 'What is your mothers maiden name?', 'Femling');
 INSERT INTO CHALLENGE_QUESTIONS (USER_ID, CHALLENGE_QUESTION, CHALLENGE_ANSWER) VALUES
-(1002, "What is your fathers middle name?", "Femling");
+(1002, 'What is your fathers middle name?', 'Vincent');
 
 INSERT INTO CHALLENGE_QUESTIONS (USER_ID, CHALLENGE_QUESTION, CHALLENGE_ANSWER) VALUES
-(1003, "What is your mothers maiden name?", "Femling");
+(1003, 'What is your mothers maiden name?', 'Femling');
 INSERT INTO CHALLENGE_QUESTIONS (USER_ID, CHALLENGE_QUESTION, CHALLENGE_ANSWER) VALUES
-(1003, "What is your fathers middle name?", "Femling");
+(1003, 'What is your fathers middle name?', 'Vincent');
+
+INSERT INTO SERVICES (SERVICE_ID, CARD_TITLE, CARD_IMG, CARD_TITLE_2, CARD_DESC, CARD_PRICING_DETAIL) VALUES
+(1, 'Event Planning', 'https://images.pexels.com/photos/267507/pexels-photo-267507.jpeg?cs=srgb&dl=businessmen-classroom-communication-267507.jpg&fm=jpg',
+'Title1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et sollicitudin ac orci phasellus egestas tellus. Phasellus faucibus scelerisque eleifend donec.',
+'$16-$18 Per Hour');
+
+INSERT INTO SERVICES (SERVICE_ID, CARD_TITLE, CARD_IMG, CARD_TITLE_2, CARD_DESC, CARD_PRICING_DETAIL) VALUES(
+'Travel Management', 'https://images.pexels.com/photos/1204649/pexels-photo-1204649.jpeg?cs=srgb&dl=brainstorming-collaborate-collaboration-1204649.jpg&fm=jpg',
+'Title2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dignissim suspendisse in est ante in. Orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt tortor.',
+'$20-$22 Per Hour');
+
+INSERT INTO SERVICES (SERVICE_ID, CARD_TITLE, CARD_IMG, CARD_TITLE_2, CARD_DESC, CARD_PRICING_DETAIL) VALUES(
+'Administrative Assistant', 'http://www.intheblack.com/~/media/intheblack/allimages/sponsored-content/2018/dexus-office-space.jpg',
+'Title3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget mi proin sed libero enim sed faucibus turpis in. Sed enim ut sem viverra aliquet eget.',
+'$10-$12 Per Hour');
+
+INSERT INTO SERVICES (SERVICE_ID, CARD_TITLE, CARD_IMG, CARD_TITLE_2, CARD_DESC, CARD_PRICING_DETAIL) VALUES(
+'Virtual Assistant','https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE28gcp?ver=be70&q=90&m=2&h=768&w=1024&b=%23FFFFFFFF&aim=true',
+'Title4', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies integer quis auctor elit sed vulputate mi. Senectus et netus et malesuada.',
+'$1-$2 Per Hour');
