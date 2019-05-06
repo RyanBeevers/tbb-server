@@ -2,6 +2,8 @@ package com.tbb.models;
 
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -77,185 +79,186 @@ public class Users {
     @NotNull
     @Column(name="first_time_login")
     private boolean firstTimeLogIn;
+    
+//    @OneToMany(mappedBy = "invoiceId", cascade = CascadeType.ALL)
+//    private List<Invoices> invoices;
+//
+//    @OneToMany(mappedBy = "taskId", cascade = CascadeType.ALL)
+//    private List<Tasks> tasks;
+//
 
     public Users() {
     }
 
-    public Users(String firstName, String lastName, String roleType, String email, String password, String businessName, String typeOfBusiness, String workPhone, String personalPhone, String businessStreetAddress, String businessCity, String businessState, String businessZip, String businessCountry, boolean alreadyTexted, boolean firstTimeLogIn) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.roleType = roleType;
-        this.email = email;
-        this.password = password;
-        this.businessName = businessName;
-        this.typeOfBusiness = typeOfBusiness;
-        this.workPhone = workPhone;
-        this.personalPhone = personalPhone;
-        this.businessStreetAddress = businessStreetAddress;
-        this.businessCity = businessCity;
-        this.businessState = businessState;
-        this.businessZip = businessZip;
-        this.businessCountry = businessCountry;
-        this.alreadyTexted = alreadyTexted;
-        this.firstTimeLogIn = firstTimeLogIn;
-    }
+public Users(int userId, @NotNull String firstName, @NotNull String lastName, @NotNull String roleType,
+		@NotNull String email, @NotNull String password, @NotNull String businessName, String typeOfBusiness,
+		@NotNull String workPhone, String personalPhone, @NotNull String businessStreetAddress,
+		@NotNull String businessCity, @NotNull String businessState, @NotNull String businessZip,
+		@NotNull String businessCountry, @NotNull boolean alreadyTexted, @NotNull boolean firstTimeLogIn) {
+	super();
+	this.userId = userId;
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.roleType = roleType;
+	this.email = email;
+	this.password = password;
+	this.businessName = businessName;
+	this.typeOfBusiness = typeOfBusiness;
+	this.workPhone = workPhone;
+	this.personalPhone = personalPhone;
+	this.businessStreetAddress = businessStreetAddress;
+	this.businessCity = businessCity;
+	this.businessState = businessState;
+	this.businessZip = businessZip;
+	this.businessCountry = businessCountry;
+	this.alreadyTexted = alreadyTexted;
+	this.firstTimeLogIn = firstTimeLogIn;
+}
 
-    public int getUserId() {
-        return userId;
-    }
+public int getUserId() {
+	return userId;
+}
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+public void setUserId(int userId) {
+	this.userId = userId;
+}
 
-    public String getFirstName() {
-        return firstName;
-    }
+public String getFirstName() {
+	return firstName;
+}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+public void setFirstName(String firstName) {
+	this.firstName = firstName;
+}
 
-    public String getLastName() {
-        return lastName;
-    }
+public String getLastName() {
+	return lastName;
+}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+public void setLastName(String lastName) {
+	this.lastName = lastName;
+}
 
-    public String getRoleType() {
-        return roleType;
-    }
+public String getRoleType() {
+	return roleType;
+}
 
-    public void setRoleType(String roleType) {
-        this.roleType = roleType;
-    }
+public void setRoleType(String roleType) {
+	this.roleType = roleType;
+}
 
-    public String getEmail() {
-        return email;
-    }
+public String getEmail() {
+	return email;
+}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+public void setEmail(String email) {
+	this.email = email;
+}
 
-    public String getPassword() {
-        return password;
-    }
+public String getPassword() {
+	return password;
+}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+public void setPassword(String password) {
+	this.password = password;
+}
 
-    public String getBusinessName() {
-        return businessName;
-    }
+public String getBusinessName() {
+	return businessName;
+}
 
-    public void setBusinessName(String businessName) {
-        this.businessName = businessName;
-    }
+public void setBusinessName(String businessName) {
+	this.businessName = businessName;
+}
 
-    public String getTypeOfBusiness() {
-        return typeOfBusiness;
-    }
+public String getTypeOfBusiness() {
+	return typeOfBusiness;
+}
 
-    public void setTypeOfBusiness(String typeOfBusiness) {
-        this.typeOfBusiness = typeOfBusiness;
-    }
+public void setTypeOfBusiness(String typeOfBusiness) {
+	this.typeOfBusiness = typeOfBusiness;
+}
 
-    public String getWorkPhone() {
-        return workPhone;
-    }
+public String getWorkPhone() {
+	return workPhone;
+}
 
-    public void setWorkPhone(String workPhone) {
-        this.workPhone = workPhone;
-    }
+public void setWorkPhone(String workPhone) {
+	this.workPhone = workPhone;
+}
 
-    public String getPersonalPhone() {
-        return personalPhone;
-    }
+public String getPersonalPhone() {
+	return personalPhone;
+}
 
-    public void setPersonalPhone(String personalPhone) {
-        this.personalPhone = personalPhone;
-    }
+public void setPersonalPhone(String personalPhone) {
+	this.personalPhone = personalPhone;
+}
 
-    public String getBusinessStreetAddress() {
-        return businessStreetAddress;
-    }
+public String getBusinessStreetAddress() {
+	return businessStreetAddress;
+}
 
-    public void setBusinessStreetAddress(String businessStreetAddress) {
-        this.businessStreetAddress = businessStreetAddress;
-    }
+public void setBusinessStreetAddress(String businessStreetAddress) {
+	this.businessStreetAddress = businessStreetAddress;
+}
 
-    public String getBusinessCity() {
-        return businessCity;
-    }
+public String getBusinessCity() {
+	return businessCity;
+}
 
-    public void setBusinessCity(String businessCity) {
-        this.businessCity = businessCity;
-    }
+public void setBusinessCity(String businessCity) {
+	this.businessCity = businessCity;
+}
 
-    public String getBusinessState() {
-        return businessState;
-    }
+public String getBusinessState() {
+	return businessState;
+}
 
-    public void setBusinessState(String businessState) {
-        this.businessState = businessState;
-    }
+public void setBusinessState(String businessState) {
+	this.businessState = businessState;
+}
 
-    public String getBusinessZip() {
-        return businessZip;
-    }
+public String getBusinessZip() {
+	return businessZip;
+}
 
-    public void setBusinessZip(String businessZip) {
-        this.businessZip = businessZip;
-    }
+public void setBusinessZip(String businessZip) {
+	this.businessZip = businessZip;
+}
 
-    public String getBusinessCountry() {
-        return businessCountry;
-    }
+public String getBusinessCountry() {
+	return businessCountry;
+}
 
-    public void setBusinessCountry(String businessCountry) {
-        this.businessCountry = businessCountry;
-    }
+public void setBusinessCountry(String businessCountry) {
+	this.businessCountry = businessCountry;
+}
 
-    public boolean isAlreadyTexted() {
-        return alreadyTexted;
-    }
+public boolean isAlreadyTexted() {
+	return alreadyTexted;
+}
 
-    public void setAlreadyTexted(boolean alreadyTexted) {
-        this.alreadyTexted = alreadyTexted;
-    }
+public void setAlreadyTexted(boolean alreadyTexted) {
+	this.alreadyTexted = alreadyTexted;
+}
 
-    public boolean isFirstTimeLogIn() {
-        return firstTimeLogIn;
-    }
+public boolean isFirstTimeLogIn() {
+	return firstTimeLogIn;
+}
 
-    public void setFirstTimeLogIn(boolean firstTimeLogIn) {
-        this.firstTimeLogIn = firstTimeLogIn;
-    }
+public void setFirstTimeLogIn(boolean firstTimeLogIn) {
+	this.firstTimeLogIn = firstTimeLogIn;
+}
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", roleType='" + roleType + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", businessName='" + businessName + '\'' +
-                ", typeOfBusiness='" + typeOfBusiness + '\'' +
-                ", workPhone='" + workPhone + '\'' +
-                ", personalPhone='" + personalPhone + '\'' +
-                ", businessStreetAddress='" + businessStreetAddress + '\'' +
-                ", businessCity='" + businessCity + '\'' +
-                ", businessState='" + businessState + '\'' +
-                ", businessZip='" + businessZip + '\'' +
-                ", businessCountry='" + businessCountry + '\'' +
-                ", alreadyTexted=" + alreadyTexted +
-                ", firstTimeLogIn=" + firstTimeLogIn +
-                '}';
-    }
+@Override
+public String toString() {
+	return "Users [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", roleType=" + roleType
+			+ ", email=" + email + ", password=" + password + ", businessName=" + businessName + ", typeOfBusiness="
+			+ typeOfBusiness + ", workPhone=" + workPhone + ", personalPhone=" + personalPhone
+			+ ", businessStreetAddress=" + businessStreetAddress + ", businessCity=" + businessCity + ", businessState="
+			+ businessState + ", businessZip=" + businessZip + ", businessCountry=" + businessCountry
+			+ ", alreadyTexted=" + alreadyTexted + ", firstTimeLogIn=" + firstTimeLogIn + "]";
+}
+    
 }

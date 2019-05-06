@@ -13,7 +13,7 @@ public class Services{
     @Id
     @Column(name="service_id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="service_seq")
-    @SequenceGenerator(name="service_seq", sequenceName="service_seq", allocationSize = 1)
+    @SequenceGenerator(name="service_seq", sequenceName="serv_seq", allocationSize = 1)
     private int serviceId;
 
     @NotNull
@@ -24,7 +24,6 @@ public class Services{
     @Column(name="card_img")
     private String cardImg;
 
-    @NotNull
     @Column(name="card_title_2")
     private String cardTitle2;
 

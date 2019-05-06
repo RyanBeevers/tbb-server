@@ -34,12 +34,23 @@ public class ChallengeQuestionsController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		int userId = newUser.getUserId();
-		System.out.println(userId);
 		List<ChallengeQuestions> challengeQuestions = service.findChallengeQuestionsByUserId(userId);
 		if (challengeQuestions == null) {
 			return new ResponseEntity<>(challengeQuestions, HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<ChallengeQuestions>>(challengeQuestions, HttpStatus.OK);
+	}
+	
+	@PostMapping(path="/setChallengeQuestion", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ChallengeQuestions> setChallengeQuestions(@RequestBody ChallengeQuestions challengeQuestion){
+		if(challengeQuestion == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		ChallengeQuestions newChallengeQuestion = service.setChallengeQuestions(challengeQuestion);
+		if (newChallengeQuestion == null) {
+			return new ResponseEntity<>(newChallengeQuestion, HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<ChallengeQuestions>(newChallengeQuestion, HttpStatus.OK);
 	}
 	
 }

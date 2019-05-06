@@ -37,5 +37,4 @@ public class UserService {
 	public Users updateUser(Users user) {
 		return repo.save(user);
 	}
-	
 }

@@ -3,7 +3,10 @@ package com.tbb.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -14,11 +17,16 @@ import org.springframework.stereotype.Component;
 @Table(name="CHALLENGE_QUESTIONS")
 public class ChallengeQuestions {
 	
-    @Column(name="user_id")
+	@Id
+	@Column(name="challenge_question_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="cq_seq")
+    @SequenceGenerator(name="cq_seq", sequenceName="challenge_question_seq", allocationSize = 1)
+    private int challengeQuestionId;
+	
+	@Column(name="user_id")
     @NotNull
 	private int userId;
 	
-    @Id
 	@Column(name="challenge_question")
 	@NotNull
 	private String challengeQuestion;

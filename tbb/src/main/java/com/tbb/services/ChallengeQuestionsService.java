@@ -22,5 +22,9 @@ public class ChallengeQuestionsService {
 	public List<ChallengeQuestions> findChallengeQuestionsByUserId (int userId) {
 		return repo.findAllChallengeQuestionsByUserId(userId);
 	}
+	
+	public ChallengeQuestions setChallengeQuestions (ChallengeQuestions newChallengeQuestion){
+		return this.repo.save(newChallengeQuestion);
+	}
 
 }
