@@ -64,7 +64,11 @@ public class Invoices {
     public Invoices() {
     }
 
-
+    public Invoices(int invoiceId){
+        super();
+        this.invoiceId = invoiceId;
+    }
+	
 	public Invoices(int invoiceId, @NotNull String invoiceDateOfIssue, double invoiceDiscount, double invoiceTotal,
 			@NotNull String invoicePayByDate, String invoicePaidDate, @NotNull boolean invoicePaidFlag,
 			@NotNull Users user, List<Tasks> tasks) {
