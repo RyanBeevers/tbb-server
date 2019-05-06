@@ -89,6 +89,11 @@ public class Users {
 
     public Users() {
     }
+	
+    public Users(int userId){
+        super();
+        this.userId=userId;
+    }
 
 public Users(int userId, @NotNull String firstName, @NotNull String lastName, @NotNull String roleType,
 		@NotNull String email, @NotNull String password, @NotNull String businessName, String typeOfBusiness,
