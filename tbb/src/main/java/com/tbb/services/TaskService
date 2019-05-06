@@ -1,0 +1,40 @@
+package com.example.demo.Services;
+
+import com.example.demo.Repos.TaskRepo;
+import com.example.demo.models.Tasks;
+import com.example.demo.models.Users;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class TaskService {
+
+    private TaskRepo repo;
+
+    @Autowired
+    public TaskService (TaskRepo taskRepo){
+        this.repo=taskRepo;
+    }
+
+    public List<Tasks> getTasks(){
+        return repo.findAll();
+    }
+
+    public List<Tasks> findAllByUser (Users user){
+        return repo.findAllByUser(user);
+    }
+
+    public List<Tasks> findAllByUserAndInvoicesIsNull(Users user){
+        return repo.findAllByUserAndInvoicesIsNull(user);
+    }
+
+    public Tasks createTask(Tasks task){
+        return repo.save(task);
+    }
+
+    public Tasks updateTask(Tasks task) {
+        return repo.save(task);
+    }
+}
