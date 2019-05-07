@@ -71,8 +71,7 @@ public class Invoices {
     }
 
     public Invoices(@NotNull String invoiceDateOfIssue, double invoiceDiscount, double invoiceTotal,
-                    @NotNull String invoicePayByDate, String invoicePaidDate, @NotNull boolean invoicePaidFlag,
-                    @NotNull Users user, List<Tasks> tasks) {
+                    @NotNull String invoicePayByDate, String invoicePaidDate, @NotNull boolean invoicePaidFlag) {
         super();
         this.invoiceDateOfIssue = invoiceDateOfIssue;
         this.invoiceDiscount = invoiceDiscount;
@@ -80,8 +79,6 @@ public class Invoices {
         this.invoicePayByDate = invoicePayByDate;
         this.invoicePaidDate = invoicePaidDate;
         this.invoicePaidFlag = invoicePaidFlag;
-        this.user = user;
-        this.tasks = tasks;
     }
 
 
