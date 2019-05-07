@@ -1,6 +1,7 @@
 package com.example.demo.Services;
 
 import com.example.demo.Repos.TaskRepo;
+import com.example.demo.models.Invoices;
 import com.example.demo.models.Tasks;
 import com.example.demo.models.Users;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +31,15 @@ public class TaskService {
         return repo.findAllByUserAndInvoicesIsNull(user);
     }
 
+    public List<Tasks> findAllByInvoice(Invoices invoice){
+        return repo.findAllByInvoices(invoice);
+    }
+
     public Tasks createTask(Tasks task){
         return repo.save(task);
     }
 
-    public Tasks updateTask(Tasks task) {
+    public Tasks updateTask(Tasks task){
         return repo.save(task);
     }
 }
-   
