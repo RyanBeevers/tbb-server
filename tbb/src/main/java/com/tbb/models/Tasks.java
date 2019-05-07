@@ -71,7 +71,7 @@ public class Tasks {
     public Tasks(@NotNull String taskName, @NotNull String taskDesc, @NotNull Date taskSubmittedDate,
                  @NotNull Date taskDueDate, @NotNull String taskStatus, @NotNull double taskEstimatedCost,
                  double taskFinalCost, @NotNull double taskEstimatedEffort, double taskActualEffort,
-                 @NotNull double taskCostPerHour, Invoices invoices, @NotNull Users user) {
+                 @NotNull double taskCostPerHour) {
         super();
         this.taskName = taskName;
         this.taskDesc = taskDesc;
@@ -83,8 +83,6 @@ public class Tasks {
         this.taskEstimatedEffort = taskEstimatedEffort;
         this.taskActualEffort = taskActualEffort;
         this.taskCostPerHour = taskCostPerHour;
-        this.invoices = invoices;
-        this.user = user;
     }
 
 
