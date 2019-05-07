@@ -1,7 +1,8 @@
-package com.tbb.models;
+package com.example.demo.models;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -57,7 +58,7 @@ public class Invoices {
     @JoinColumn(name="user_id")
     private Users user;
 
-    @JsonIgnore	
+    @JsonIgnore
     @OneToMany(mappedBy = "invoices", cascade = CascadeType.ALL)
     private List<Tasks> tasks;
 
@@ -68,119 +69,141 @@ public class Invoices {
         super();
         this.invoiceId = invoiceId;
     }
-	
-	public Invoices(int invoiceId, @NotNull String invoiceDateOfIssue, double invoiceDiscount, double invoiceTotal,
-			@NotNull String invoicePayByDate, String invoicePaidDate, @NotNull boolean invoicePaidFlag,
-			@NotNull Users user, List<Tasks> tasks) {
-		super();
-		this.invoiceId = invoiceId;
-		this.invoiceDateOfIssue = invoiceDateOfIssue;
-		this.invoiceDiscount = invoiceDiscount;
-		this.invoiceTotal = invoiceTotal;
-		this.invoicePayByDate = invoicePayByDate;
-		this.invoicePaidDate = invoicePaidDate;
-		this.invoicePaidFlag = invoicePaidFlag;
-		this.user = user;
-		this.tasks = tasks;
-	}
+
+    public Invoices(@NotNull String invoiceDateOfIssue, double invoiceDiscount, double invoiceTotal,
+                    @NotNull String invoicePayByDate, String invoicePaidDate, @NotNull boolean invoicePaidFlag,
+                    @NotNull Users user, List<Tasks> tasks) {
+        super();
+        this.invoiceDateOfIssue = invoiceDateOfIssue;
+        this.invoiceDiscount = invoiceDiscount;
+        this.invoiceTotal = invoiceTotal;
+        this.invoicePayByDate = invoicePayByDate;
+        this.invoicePaidDate = invoicePaidDate;
+        this.invoicePaidFlag = invoicePaidFlag;
+        this.user = user;
+        this.tasks = tasks;
+    }
 
 
-	public int getInvoiceId() {
-		return invoiceId;
-	}
+    public int getInvoiceId() {
+        return invoiceId;
+    }
 
 
-	public void setInvoiceId(int invoiceId) {
-		this.invoiceId = invoiceId;
-	}
+    public void setInvoiceId(int invoiceId) {
+        this.invoiceId = invoiceId;
+    }
 
 
-	public String getInvoiceDateOfIssue() {
-		return invoiceDateOfIssue;
-	}
+    public String getInvoiceDateOfIssue() {
+        return invoiceDateOfIssue;
+    }
 
 
-	public void setInvoiceDateOfIssue(String invoiceDateOfIssue) {
-		this.invoiceDateOfIssue = invoiceDateOfIssue;
-	}
+    public void setInvoiceDateOfIssue(String invoiceDateOfIssue) {
+        this.invoiceDateOfIssue = invoiceDateOfIssue;
+    }
 
 
-	public double getInvoiceDiscount() {
-		return invoiceDiscount;
-	}
+    public double getInvoiceDiscount() {
+        return invoiceDiscount;
+    }
 
 
-	public void setInvoiceDiscount(double invoiceDiscount) {
-		this.invoiceDiscount = invoiceDiscount;
-	}
+    public void setInvoiceDiscount(double invoiceDiscount) {
+        this.invoiceDiscount = invoiceDiscount;
+    }
 
 
-	public double getInvoiceTotal() {
-		return invoiceTotal;
-	}
+    public double getInvoiceTotal() {
+        return invoiceTotal;
+    }
 
 
-	public void setInvoiceTotal(double invoiceTotal) {
-		this.invoiceTotal = invoiceTotal;
-	}
+    public void setInvoiceTotal(double invoiceTotal) {
+        this.invoiceTotal = invoiceTotal;
+    }
 
 
-	public String getInvoicePayByDate() {
-		return invoicePayByDate;
-	}
+    public String getInvoicePayByDate() {
+        return invoicePayByDate;
+    }
 
 
-	public void setInvoicePayByDate(String invoicePayByDate) {
-		this.invoicePayByDate = invoicePayByDate;
-	}
+    public void setInvoicePayByDate(String invoicePayByDate) {
+        this.invoicePayByDate = invoicePayByDate;
+    }
 
 
-	public String getInvoicePaidDate() {
-		return invoicePaidDate;
-	}
+    public String getInvoicePaidDate() {
+        return invoicePaidDate;
+    }
 
 
-	public void setInvoicePaidDate(String invoicePaidDate) {
-		this.invoicePaidDate = invoicePaidDate;
-	}
+    public void setInvoicePaidDate(String invoicePaidDate) {
+        this.invoicePaidDate = invoicePaidDate;
+    }
 
 
-	public boolean isInvoicePaidFlag() {
-		return invoicePaidFlag;
-	}
+    public boolean isInvoicePaidFlag() {
+        return invoicePaidFlag;
+    }
 
 
-	public void setInvoicePaidFlag(boolean invoicePaidFlag) {
-		this.invoicePaidFlag = invoicePaidFlag;
-	}
+    public void setInvoicePaidFlag(boolean invoicePaidFlag) {
+        this.invoicePaidFlag = invoicePaidFlag;
+    }
 
 
-	public Users getUser() {
-		return user;
-	}
+    public Users getUser() {
+        return user;
+    }
 
 
-	public void setUser(Users user) {
-		this.user = user;
-	}
+    public void setUser(Users user) {
+        this.user = user;
+    }
 
 
-	public List<Tasks> getTasks() {
-		return tasks;
-	}
+    public List<Tasks> getTasks() {
+        return tasks;
+    }
 
 
-	public void setTasks(List<Tasks> tasks) {
-		this.tasks = tasks;
-	}
+    public void setTasks(List<Tasks> tasks) {
+        this.tasks = tasks;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Invoices invoices = (Invoices) o;
+        return invoiceId == invoices.invoiceId &&
+                Double.compare(invoices.invoiceDiscount, invoiceDiscount) == 0 &&
+                Double.compare(invoices.invoiceTotal, invoiceTotal) == 0 &&
+                invoicePaidFlag == invoices.invoicePaidFlag &&
+                Objects.equals(invoiceDateOfIssue, invoices.invoiceDateOfIssue) &&
+                Objects.equals(invoicePayByDate, invoices.invoicePayByDate) &&
+                Objects.equals(invoicePaidDate, invoices.invoicePaidDate) &&
+                Objects.equals(user, invoices.user) &&
+                Objects.equals(tasks, invoices.tasks);
+    }
 
-	@Override
-	public String toString() {
-		return "Invoices [invoiceId=" + invoiceId + ", invoiceDateOfIssue=" + invoiceDateOfIssue + ", invoiceDiscount="
-				+ invoiceDiscount + ", invoiceTotal=" + invoiceTotal + ", invoicePayByDate=" + invoicePayByDate
-				+ ", invoicePaidDate=" + invoicePaidDate + ", invoicePaidFlag=" + invoicePaidFlag
-				 + "]";
-	}
-    
+    @Override
+    public int hashCode() {
+        return Objects.hash(invoiceId, invoiceDateOfIssue, invoiceDiscount, invoiceTotal, invoicePayByDate, invoicePaidDate, invoicePaidFlag, user, tasks);
+    }
+
+    @Override
+    public String toString() {
+        return "Invoices{" +
+                "invoiceDateOfIssue='" + invoiceDateOfIssue + '\'' +
+                ", invoiceDiscount=" + invoiceDiscount +
+                ", invoiceTotal=" + invoiceTotal +
+                ", invoicePayByDate='" + invoicePayByDate + '\'' +
+                ", invoicePaidDate='" + invoicePaidDate + '\'' +
+                ", invoicePaidFlag=" + invoicePaidFlag +
+                '}';
+    }
 }
