@@ -1,40 +1,19 @@
-package com.example.demo.Services;
+package com.example.demo.Repos;
 
-import com.example.demo.Repos.TaskRepo;
 import com.example.demo.models.Tasks;
 import com.example.demo.models.Users;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
-@Service
-public class TaskService {
+@Repository
+public interface TaskRepo extends JpaRepository <Tasks, Integer> {
 
-    private TaskRepo repo;
+    List<Tasks> findAllByUser(Users user);
 
-    @Autowired
-    public TaskService (TaskRepo taskRepo){
-        this.repo=taskRepo;
-    }
+    List<Tasks> findAllByUserAndInvoicesIsNull(Users user);
 
-    public List<Tasks> getTasks(){
-        return repo.findAll();
-    }
-
-    public List<Tasks> findAllByUser (Users user){
-        return repo.findAllByUser(user);
-    }
-
-    public List<Tasks> findAllByUserAndInvoicesIsNull(Users user){
-        return repo.findAllByUserAndInvoicesIsNull(user);
-    }
-
-    public Tasks createTask(Tasks task){
-        return repo.save(task);
-    }
-
-    public Tasks updateTask(Tasks task) {
-        return repo.save(task);
-    }
 }
