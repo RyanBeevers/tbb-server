@@ -1,10 +1,10 @@
-package com.tbb.models;
-
+package com.example.demo.models;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Component
@@ -60,204 +60,227 @@ public class Tasks {
     private Invoices invoices;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name="user_id")
     private Users user;
-
-
 
     public Tasks() {
     }
 
 
+    public Tasks(@NotNull String taskName, @NotNull String taskDesc, @NotNull Date taskSubmittedDate,
+                 @NotNull Date taskDueDate, @NotNull String taskStatus, @NotNull double taskEstimatedCost,
+                 double taskFinalCost, @NotNull double taskEstimatedEffort, double taskActualEffort,
+                 @NotNull double taskCostPerHour, Invoices invoices, @NotNull Users user) {
+        super();
+        this.taskName = taskName;
+        this.taskDesc = taskDesc;
+        this.taskSubmittedDate = taskSubmittedDate;
+        this.taskDueDate = taskDueDate;
+        this.taskStatus = taskStatus;
+        this.taskEstimatedCost = taskEstimatedCost;
+        this.taskFinalCost = taskFinalCost;
+        this.taskEstimatedEffort = taskEstimatedEffort;
+        this.taskActualEffort = taskActualEffort;
+        this.taskCostPerHour = taskCostPerHour;
+        this.invoices = invoices;
+        this.user = user;
+    }
 
-	public Tasks(int taskId, @NotNull String taskName, @NotNull String taskDesc, @NotNull Date taskSubmittedDate,
-			@NotNull Date taskDueDate, @NotNull String taskStatus, @NotNull double taskEstimatedCost,
-			double taskFinalCost, @NotNull double taskEstimatedEffort, double taskActualEffort,
-			@NotNull double taskCostPerHour, Invoices invoices, @NotNull Users user) {
-		super();
-		this.taskId = taskId;
-		this.taskName = taskName;
-		this.taskDesc = taskDesc;
-		this.taskSubmittedDate = taskSubmittedDate;
-		this.taskDueDate = taskDueDate;
-		this.taskStatus = taskStatus;
-		this.taskEstimatedCost = taskEstimatedCost;
-		this.taskFinalCost = taskFinalCost;
-		this.taskEstimatedEffort = taskEstimatedEffort;
-		this.taskActualEffort = taskActualEffort;
-		this.taskCostPerHour = taskCostPerHour;
-		this.invoices = invoices;
-		this.user = user;
-	}
 
 
+    public int getTaskId() {
+        return taskId;
+    }
 
-	public int getTaskId() {
-		return taskId;
-	}
 
 
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
+    }
 
-	public void setTaskId(int taskId) {
-		this.taskId = taskId;
-	}
 
 
+    public String getTaskName() {
+        return taskName;
+    }
 
-	public String getTaskName() {
-		return taskName;
-	}
 
 
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
 
-	public void setTaskName(String taskName) {
-		this.taskName = taskName;
-	}
 
 
+    public String getTaskDesc() {
+        return taskDesc;
+    }
 
-	public String getTaskDesc() {
-		return taskDesc;
-	}
 
 
+    public void setTaskDesc(String taskDesc) {
+        this.taskDesc = taskDesc;
+    }
 
-	public void setTaskDesc(String taskDesc) {
-		this.taskDesc = taskDesc;
-	}
 
 
+    public Date getTaskSubmittedDate() {
+        return taskSubmittedDate;
+    }
 
-	public Date getTaskSubmittedDate() {
-		return taskSubmittedDate;
-	}
 
 
+    public void setTaskSubmittedDate(Date taskSubmittedDate) {
+        this.taskSubmittedDate = taskSubmittedDate;
+    }
 
-	public void setTaskSubmittedDate(Date taskSubmittedDate) {
-		this.taskSubmittedDate = taskSubmittedDate;
-	}
 
 
+    public Date getTaskDueDate() {
+        return taskDueDate;
+    }
 
-	public Date getTaskDueDate() {
-		return taskDueDate;
-	}
 
 
+    public void setTaskDueDate(Date taskDueDate) {
+        this.taskDueDate = taskDueDate;
+    }
 
-	public void setTaskDueDate(Date taskDueDate) {
-		this.taskDueDate = taskDueDate;
-	}
 
 
+    public String getTaskStatus() {
+        return taskStatus;
+    }
 
-	public String getTaskStatus() {
-		return taskStatus;
-	}
 
 
+    public void setTaskStatus(String taskStatus) {
+        this.taskStatus = taskStatus;
+    }
 
-	public void setTaskStatus(String taskStatus) {
-		this.taskStatus = taskStatus;
-	}
 
 
+    public double getTaskEstimatedCost() {
+        return taskEstimatedCost;
+    }
 
-	public double getTaskEstimatedCost() {
-		return taskEstimatedCost;
-	}
 
 
+    public void setTaskEstimatedCost(double taskEstimatedCost) {
+        this.taskEstimatedCost = taskEstimatedCost;
+    }
 
-	public void setTaskEstimatedCost(double taskEstimatedCost) {
-		this.taskEstimatedCost = taskEstimatedCost;
-	}
 
 
+    public double getTaskFinalCost() {
+        return taskFinalCost;
+    }
 
-	public double getTaskFinalCost() {
-		return taskFinalCost;
-	}
 
 
+    public void setTaskFinalCost(double taskFinalCost) {
+        this.taskFinalCost = taskFinalCost;
+    }
 
-	public void setTaskFinalCost(double taskFinalCost) {
-		this.taskFinalCost = taskFinalCost;
-	}
 
 
+    public double getTaskEstimatedEffort() {
+        return taskEstimatedEffort;
+    }
 
-	public double getTaskEstimatedEffort() {
-		return taskEstimatedEffort;
-	}
 
 
+    public void setTaskEstimatedEffort(double taskEstimatedEffort) {
+        this.taskEstimatedEffort = taskEstimatedEffort;
+    }
 
-	public void setTaskEstimatedEffort(double taskEstimatedEffort) {
-		this.taskEstimatedEffort = taskEstimatedEffort;
-	}
 
 
+    public double getTaskActualEffort() {
+        return taskActualEffort;
+    }
 
-	public double getTaskActualEffort() {
-		return taskActualEffort;
-	}
 
 
+    public void setTaskActualEffort(double taskActualEffort) {
+        this.taskActualEffort = taskActualEffort;
+    }
 
-	public void setTaskActualEffort(double taskActualEffort) {
-		this.taskActualEffort = taskActualEffort;
-	}
 
 
+    public double getTaskCostPerHour() {
+        return taskCostPerHour;
+    }
 
-	public double getTaskCostPerHour() {
-		return taskCostPerHour;
-	}
 
 
+    public void setTaskCostPerHour(double taskCostPerHour) {
+        this.taskCostPerHour = taskCostPerHour;
+    }
 
-	public void setTaskCostPerHour(double taskCostPerHour) {
-		this.taskCostPerHour = taskCostPerHour;
-	}
 
 
+    public Invoices getInvoices() {
+        return invoices;
+    }
 
-	public Invoices getInvoices() {
-		return invoices;
-	}
 
 
+    public void setInvoices(Invoices invoices) {
+        this.invoices = invoices;
+    }
 
-	public void setInvoices(Invoices invoices) {
-		this.invoices = invoices;
-	}
 
 
+    public Users getUser() {
+        return user;
+    }
 
-	public Users getUser() {
-		return user;
-	}
 
 
+    public void setUser(Users user) {
+        this.user = user;
+    }
 
-	public void setUser(Users user) {
-		this.user = user;
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tasks tasks = (Tasks) o;
+        return taskId == tasks.taskId &&
+                Double.compare(tasks.taskEstimatedCost, taskEstimatedCost) == 0 &&
+                Double.compare(tasks.taskFinalCost, taskFinalCost) == 0 &&
+                Double.compare(tasks.taskEstimatedEffort, taskEstimatedEffort) == 0 &&
+                Double.compare(tasks.taskActualEffort, taskActualEffort) == 0 &&
+                Double.compare(tasks.taskCostPerHour, taskCostPerHour) == 0 &&
+                Objects.equals(taskName, tasks.taskName) &&
+                Objects.equals(taskDesc, tasks.taskDesc) &&
+                Objects.equals(taskSubmittedDate, tasks.taskSubmittedDate) &&
+                Objects.equals(taskDueDate, tasks.taskDueDate) &&
+                Objects.equals(taskStatus, tasks.taskStatus) &&
+                Objects.equals(invoices, tasks.invoices) &&
+                Objects.equals(user, tasks.user);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(taskId, taskName, taskDesc, taskSubmittedDate, taskDueDate, taskStatus, taskEstimatedCost, taskFinalCost, taskEstimatedEffort, taskActualEffort, taskCostPerHour, invoices, user);
+    }
 
-
-	@Override
-	public String toString() {
-		return "Tasks [taskId=" + taskId + ", taskName=" + taskName + ", taskDesc=" + taskDesc + ", taskSubmittedDate="
-				+ taskSubmittedDate + ", taskDueDate=" + taskDueDate + ", taskStatus=" + taskStatus
-				+ ", taskEstimatedCost=" + taskEstimatedCost + ", taskFinalCost=" + taskFinalCost
-				+ ", taskEstimatedEffort=" + taskEstimatedEffort + ", taskActualEffort=" + taskActualEffort
-				+ ", taskCostPerHour=" + taskCostPerHour + ", invoices=" + invoices + ", user=" + user + "]";
-	}
-    
-    
-    
+    @Override
+    public String toString() {
+        return "Tasks{" +
+                "taskName='" + taskName + '\'' +
+                ", taskDesc='" + taskDesc + '\'' +
+                ", taskSubmittedDate=" + taskSubmittedDate +
+                ", taskDueDate=" + taskDueDate +
+                ", taskStatus='" + taskStatus + '\'' +
+                ", taskEstimatedCost=" + taskEstimatedCost +
+                ", taskFinalCost=" + taskFinalCost +
+                ", taskEstimatedEffort=" + taskEstimatedEffort +
+                ", taskActualEffort=" + taskActualEffort +
+                ", taskCostPerHour=" + taskCostPerHour +
+                '}';
+    }
 }
