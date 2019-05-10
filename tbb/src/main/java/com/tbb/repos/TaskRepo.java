@@ -1,8 +1,8 @@
-package com.example.demo.Repos;
+package com.tbb.repos;
 
-import com.example.demo.models.Invoices;
-import com.example.demo.models.Tasks;
-import com.example.demo.models.Users;
+import com.tbb.models.Invoices;
+import com.tbb.models.Tasks;
+import com.tbb.models.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

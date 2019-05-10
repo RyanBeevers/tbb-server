@@ -1,13 +1,14 @@
-package com.example.demo.Services;
+package com.tbb.services;
 
-import com.example.demo.Repos.TaskRepo;
-import com.example.demo.models.Invoices;
-import com.example.demo.models.Tasks;
-import com.example.demo.models.Users;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.tbb.models.Invoices;
+import com.tbb.models.Tasks;
+import com.tbb.models.Users;
+import com.tbb.repos.TaskRepo;
 
 @Service
 public class TaskService {

@@ -1,11 +1,12 @@
-package com.example.demo.Repos;
+package com.tbb.repos;
 
 import java.util.List;
 
-import com.example.demo.models.Invoices;
-import com.example.demo.models.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.tbb.models.Invoices;
+import com.tbb.models.Users;
 
 @Repository
 public interface InvoicesRepo extends JpaRepository <Invoices, Integer>{

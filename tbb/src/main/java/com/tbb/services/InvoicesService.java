@@ -1,11 +1,12 @@
-package com.example.demo.Services;
+package com.tbb.services;
 
 import java.util.List;
 
-import com.example.demo.Repos.InvoicesRepo;
-import com.example.demo.models.Invoices;
-import com.example.demo.models.Users;
 import org.springframework.stereotype.Service;
+
+import com.tbb.models.Invoices;
+import com.tbb.models.Users;
+import com.tbb.repos.InvoicesRepo;
 
 @Service
 public class InvoicesService {

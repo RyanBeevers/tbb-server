@@ -1,10 +1,7 @@
-package com.example.demo.Controllers;
+package com.tbb.controllers;
 
 import java.util.List;
 
-import com.example.demo.Services.InvoicesService;
-import com.example.demo.models.Invoices;
-import com.example.demo.models.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,6 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.tbb.models.Invoices;
+import com.tbb.models.Users;
+import com.tbb.services.InvoicesService;
 
 @Controller
 @RestController

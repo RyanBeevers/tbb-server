@@ -1,4 +1,4 @@
-package com.example.demo.models;
+package com.tbb.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
