@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,10 +60,12 @@ public class TaskController {
 
     @PostMapping(path="/getTasksByInvoice", consumes= MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Tasks>> getTasksByInvoice(@RequestBody Invoices invoice){
+    	System.out.println(invoice);
         List<Tasks> tasks = service.findAllByInvoice(invoice);
         if (tasks == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        System.out.println(tasks);
         return new ResponseEntity<List<Tasks>>(tasks, HttpStatus.OK);
     }
 
@@ -84,5 +87,17 @@ public class TaskController {
         }
         return new ResponseEntity<>(updatedTask, HttpStatus.OK);
     }
+    
+	@PutMapping(path="/deleteTask", consumes=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Boolean> removeTask(@RequestBody Tasks deleteTask){
+		Integer id = deleteTask.getTaskId();
+		List<Tasks> tasks = service.removeTask(id);
+		if (tasks == null) {
+			return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+		}
+		else{
+			return new ResponseEntity<>(true, HttpStatus.OK);
+		}
+	}
 
 }

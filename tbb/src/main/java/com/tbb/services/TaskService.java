@@ -2,6 +2,8 @@ package com.tbb.services;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,4 +45,9 @@ public class TaskService {
     public Tasks updateTask(Tasks task){
         return repo.save(task);
     }
+    
+	@Transactional
+	public List<Tasks> removeTask(Integer id) {
+		return repo.deleteTasksByTaskId(id);
+	}
 }

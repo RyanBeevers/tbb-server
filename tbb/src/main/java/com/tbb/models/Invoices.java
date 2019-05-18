@@ -29,7 +29,7 @@ public class Invoices {
     @Id
     @Column(name="invoice_id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="invoice_seq")
-    @SequenceGenerator(name="invoice_seq", sequenceName="invoice_seq", allocationSize = 1)
+    @SequenceGenerator(name="invoice_seq", sequenceName="inv_seq", allocationSize = 1)
     private int invoiceId;
 
     @NotNull
@@ -54,12 +54,13 @@ public class Invoices {
     private boolean invoicePaidFlag;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+//    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name="user_id")
     private Users user;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "invoices", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "invoices", cascade = CascadeType.MERGE)
     private List<Tasks> tasks;
 
     public Invoices() {

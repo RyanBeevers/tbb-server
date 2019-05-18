@@ -67,12 +67,12 @@ public class Tasks {
     @Column(name="task_completed_date")
     private String taskCompletedDate;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name="invoice_id")
     private Invoices invoices;
 
     @NotNull
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.REMOVE})
+    @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name="user_id")
     private Users user;
 
