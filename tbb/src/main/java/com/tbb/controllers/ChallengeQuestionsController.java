@@ -33,7 +33,7 @@ public class ChallengeQuestionsController {
 		if(newUser == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		int userId = newUser.getUserId();
+		String userId = newUser.getUserId();
 		List<ChallengeQuestions> challengeQuestions = service.findChallengeQuestionsByUserId(userId);
 		if (challengeQuestions == null) {
 			return new ResponseEntity<>(challengeQuestions, HttpStatus.NOT_FOUND);

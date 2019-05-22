@@ -11,6 +11,6 @@ import com.tbb.models.Users;
 @Repository
 public interface ChallengeQuestionsRepo extends JpaRepository <ChallengeQuestions, Integer> {
 
-	List<ChallengeQuestions> findAllChallengeQuestionsByUserId(int userId);
+	List<ChallengeQuestions> findAllChallengeQuestionsByUserId(String userId);
 	
 }

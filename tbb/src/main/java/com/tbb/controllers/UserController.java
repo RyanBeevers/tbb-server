@@ -40,32 +40,33 @@ public class UserController {
 		return new ResponseEntity<List<Users>>(users, HttpStatus.OK);
 	}
 	
-	@PostMapping(path="/login", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Users> login(@RequestBody Users newUser){
-		Users user = service.findUserByEmail(newUser.getEmail());
-		if (user == null) {
-			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-		}
-		String password = newUser.getPassword();
-		String password1 = user.getPassword();
-		System.out.println();
-		if(!password.equals(password1)) {
-			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-		}
-		return new ResponseEntity<>(user, HttpStatus.OK);
-	}
+//	@PostMapping(path="/login", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<Users> login(@RequestBody Users newUser){
+//		Users user = service.findUserByEmail(newUser.getEmail());
+//		if (user == null) {
+//			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+//		}
+//		String password = newUser.getPassword();
+//		String password1 = user.getPassword();
+//		System.out.println();
+//		if(!password.equals(password1)) {
+//			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+//		}
+//		return new ResponseEntity<>(user, HttpStatus.OK);
+//	}
 	
-	@PostMapping(path="/checkEmail", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Users> getEmail(@RequestBody Users newUser){
-		Users user = service.findUserByEmail(newUser.getEmail());
-		if (user == null) {
-			return new ResponseEntity<>(HttpStatus.OK);
-		}
-		return new ResponseEntity<>(user, HttpStatus.ALREADY_REPORTED);
-	}
+//	@PostMapping(path="/checkEmail", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<Users> getEmail(@RequestBody Users newUser){
+//		Users user = service.findUserByEmail(newUser.getEmail());
+//		if (user == null) {
+//			return new ResponseEntity<>(HttpStatus.OK);
+//		}
+//		return new ResponseEntity<>(user, HttpStatus.ALREADY_REPORTED);
+//	}
 	
 	@PostMapping(path="/getUserByEmail", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Users> getUserByEmail(@RequestBody Users newUser){
+		System.out.println(newUser);
 		Users user = service.findUserByEmail(newUser.getEmail());
 		if (user == null) {
 			return new ResponseEntity<>(user, HttpStatus.ALREADY_REPORTED);
@@ -75,11 +76,7 @@ public class UserController {
 	
 	@PostMapping(path="/register", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Users> addUser( @RequestBody Users newUser){
-		newUser.setRoleType("user");
-		if(newUser.isFirstTimeLogIn()==true) {
-			newUser.setFirstTimeLogIn(false);
-		}
-		newUser.setAlreadyTexted(false);
+//		newUser.setAlreadyTexted(false);
 		Users user = service.addUser(newUser);
 		if (user == null) {
 			return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
@@ -89,9 +86,9 @@ public class UserController {
 	
 	@PostMapping(path="/update", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Users> updateUser( @RequestBody Users newUser){
-		if(!newUser.getRoleType().equals("admin")) {
-			newUser.setRoleType("user");
-		}
+//		if(!newUser.getRoleType().equals("admin")) {
+//			newUser.setRoleType("user");
+//		}
 		Users user = service.updateUser(newUser);
 		if (user == null) {
 			return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);

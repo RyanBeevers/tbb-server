@@ -19,7 +19,7 @@ public class ChallengeQuestionsService {
 		this.repo = challengeQuestionsRepo;
 	}
 	
-	public List<ChallengeQuestions> findChallengeQuestionsByUserId (int userId) {
+	public List<ChallengeQuestions> findChallengeQuestionsByUserId (String userId) {
 		return repo.findAllChallengeQuestionsByUserId(userId);
 	}
 	

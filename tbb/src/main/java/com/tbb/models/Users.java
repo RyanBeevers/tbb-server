@@ -15,12 +15,6 @@ import javax.validation.constraints.NotNull;
 @Table(name="USERS")
 public class Users {
 
-    @Id
-    @Column(name="user_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="user_seq")
-    @SequenceGenerator(name="user_seq", sequenceName="user_seq", allocationSize = 1)
-    private int userId;
-
     @NotNull
     @Column(name="first_name")
     private String firstName;
@@ -28,32 +22,14 @@ public class Users {
     @NotNull
     @Column(name="last_name")
     private String lastName;
-
-    @NotNull
-    @Column(name="role_type")
-    private String roleType;
-
-    @NotNull
-    @Column(name="email")
-    private String email;
-
-    @NotNull
-    @Column(name="password")
-    private String password;
-
+    
     @NotNull
     @Column(name="business_name")
     private String businessName;
 
-    @Column(name="type_of_business")
-    private String typeOfBusiness;
-
     @NotNull
     @Column(name="work_phone")
     private String workPhone;
-
-    @Column(name="personal_phone")
-    private String personalPhone;
 
     @NotNull
     @Column(name="business_street_address")
@@ -75,13 +51,21 @@ public class Users {
     @Column(name="business_country")
     private String businessCountry;
 
+    
+	@Id
+    @Column(name="user_id")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="user_seq")
+//    @SequenceGenerator(name="user_seq", sequenceName="user_seq", allocationSize = 1)
+    private String userId;
+    
+    @NotNull
+    @Column(name="email")
+    private String email;
+    
     @NotNull
     @Column(name="already_texted")
     private boolean alreadyTexted;
 
-    @NotNull
-    @Column(name="first_time_login")
-    private boolean firstTimeLogIn;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
@@ -90,224 +74,236 @@ public class Users {
     public Users() {
     }
 
-    public Users(int userId){
+    public Users(String userId){
         super();
         this.userId=userId;
     }
 
-    public Users(@NotNull String firstName, @NotNull String lastName, @NotNull String roleType, @NotNull String email, @NotNull String password, @NotNull String businessName, String typeOfBusiness, @NotNull String workPhone, String personalPhone, @NotNull String businessStreetAddress, @NotNull String businessCity, @NotNull String businessState, @NotNull String businessZip, @NotNull String businessCountry, @NotNull boolean alreadyTexted, @NotNull boolean firstTimeLogIn, List<Tasks> tasks) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.roleType = roleType;
-        this.email = email;
-        this.password = password;
-        this.businessName = businessName;
-        this.typeOfBusiness = typeOfBusiness;
-        this.workPhone = workPhone;
-        this.personalPhone = personalPhone;
-        this.businessStreetAddress = businessStreetAddress;
-        this.businessCity = businessCity;
-        this.businessState = businessState;
-        this.businessZip = businessZip;
-        this.businessCountry = businessCountry;
-        this.alreadyTexted = alreadyTexted;
-        this.firstTimeLogIn = firstTimeLogIn;
-        this.tasks = tasks;
-    }
+	public Users(@NotNull String firstName, @NotNull String lastName, @NotNull String businessName,
+			@NotNull String workPhone, @NotNull String businessStreetAddress, @NotNull String businessCity,
+			@NotNull String businessState, @NotNull String businessZip, @NotNull String businessCountry, String userId,
+			@NotNull String email, @NotNull boolean alreadyTexted, List<Tasks> tasks) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.businessName = businessName;
+		this.workPhone = workPhone;
+		this.businessStreetAddress = businessStreetAddress;
+		this.businessCity = businessCity;
+		this.businessState = businessState;
+		this.businessZip = businessZip;
+		this.businessCountry = businessCountry;
+		this.userId = userId;
+		this.email = email;
+		this.alreadyTexted = alreadyTexted;
+		this.tasks = tasks;
+	}
 
-    public int getUserId() {
-        return userId;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public String getBusinessName() {
+		return businessName;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public void setBusinessName(String businessName) {
+		this.businessName = businessName;
+	}
 
-    public String getRoleType() {
-        return roleType;
-    }
+	public String getWorkPhone() {
+		return workPhone;
+	}
 
-    public void setRoleType(String roleType) {
-        this.roleType = roleType;
-    }
+	public void setWorkPhone(String workPhone) {
+		this.workPhone = workPhone;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getBusinessStreetAddress() {
+		return businessStreetAddress;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setBusinessStreetAddress(String businessStreetAddress) {
+		this.businessStreetAddress = businessStreetAddress;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getBusinessCity() {
+		return businessCity;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setBusinessCity(String businessCity) {
+		this.businessCity = businessCity;
+	}
 
-    public String getBusinessName() {
-        return businessName;
-    }
+	public String getBusinessState() {
+		return businessState;
+	}
 
-    public void setBusinessName(String businessName) {
-        this.businessName = businessName;
-    }
+	public void setBusinessState(String businessState) {
+		this.businessState = businessState;
+	}
 
-    public String getTypeOfBusiness() {
-        return typeOfBusiness;
-    }
+	public String getBusinessZip() {
+		return businessZip;
+	}
 
-    public void setTypeOfBusiness(String typeOfBusiness) {
-        this.typeOfBusiness = typeOfBusiness;
-    }
+	public void setBusinessZip(String businessZip) {
+		this.businessZip = businessZip;
+	}
 
-    public String getWorkPhone() {
-        return workPhone;
-    }
+	public String getBusinessCountry() {
+		return businessCountry;
+	}
 
-    public void setWorkPhone(String workPhone) {
-        this.workPhone = workPhone;
-    }
+	public void setBusinessCountry(String businessCountry) {
+		this.businessCountry = businessCountry;
+	}
 
-    public String getPersonalPhone() {
-        return personalPhone;
-    }
+	public String getUserId() {
+		return userId;
+	}
 
-    public void setPersonalPhone(String personalPhone) {
-        this.personalPhone = personalPhone;
-    }
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
-    public String getBusinessStreetAddress() {
-        return businessStreetAddress;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setBusinessStreetAddress(String businessStreetAddress) {
-        this.businessStreetAddress = businessStreetAddress;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getBusinessCity() {
-        return businessCity;
-    }
+	public boolean isAlreadyTexted() {
+		return alreadyTexted;
+	}
 
-    public void setBusinessCity(String businessCity) {
-        this.businessCity = businessCity;
-    }
+	public void setAlreadyTexted(boolean alreadyTexted) {
+		this.alreadyTexted = alreadyTexted;
+	}
 
-    public String getBusinessState() {
-        return businessState;
-    }
+	public List<Tasks> getTasks() {
+		return tasks;
+	}
 
-    public void setBusinessState(String businessState) {
-        this.businessState = businessState;
-    }
+	public void setTasks(List<Tasks> tasks) {
+		this.tasks = tasks;
+	}
 
-    public String getBusinessZip() {
-        return businessZip;
-    }
+	@Override
+	public String toString() {
+		return "Users [firstName=" + firstName + ", lastName=" + lastName + ", businessName=" + businessName
+				+ ", workPhone=" + workPhone + ", businessStreetAddress=" + businessStreetAddress + ", businessCity="
+				+ businessCity + ", businessState=" + businessState + ", businessZip=" + businessZip
+				+ ", businessCountry=" + businessCountry + ", userId=" + userId + ", email=" + email
+				+ ", alreadyTexted=" + alreadyTexted + ", tasks=" + tasks + "]";
+	}
 
-    public void setBusinessZip(String businessZip) {
-        this.businessZip = businessZip;
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (alreadyTexted ? 1231 : 1237);
+		result = prime * result + ((businessCity == null) ? 0 : businessCity.hashCode());
+		result = prime * result + ((businessCountry == null) ? 0 : businessCountry.hashCode());
+		result = prime * result + ((businessName == null) ? 0 : businessName.hashCode());
+		result = prime * result + ((businessState == null) ? 0 : businessState.hashCode());
+		result = prime * result + ((businessStreetAddress == null) ? 0 : businessStreetAddress.hashCode());
+		result = prime * result + ((businessZip == null) ? 0 : businessZip.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((tasks == null) ? 0 : tasks.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
+		result = prime * result + ((workPhone == null) ? 0 : workPhone.hashCode());
+		return result;
+	}
 
-    public String getBusinessCountry() {
-        return businessCountry;
-    }
-
-    public void setBusinessCountry(String businessCountry) {
-        this.businessCountry = businessCountry;
-    }
-
-    public boolean isAlreadyTexted() {
-        return alreadyTexted;
-    }
-
-    public void setAlreadyTexted(boolean alreadyTexted) {
-        this.alreadyTexted = alreadyTexted;
-    }
-
-    public boolean isFirstTimeLogIn() {
-        return firstTimeLogIn;
-    }
-
-    public void setFirstTimeLogIn(boolean firstTimeLogIn) {
-        this.firstTimeLogIn = firstTimeLogIn;
-    }
-
-    public List<Tasks> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<Tasks> tasks) {
-        this.tasks = tasks;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Users users = (Users) o;
-        return userId == users.userId &&
-                alreadyTexted == users.alreadyTexted &&
-                firstTimeLogIn == users.firstTimeLogIn &&
-                Objects.equals(firstName, users.firstName) &&
-                Objects.equals(lastName, users.lastName) &&
-                Objects.equals(roleType, users.roleType) &&
-                Objects.equals(email, users.email) &&
-                Objects.equals(password, users.password) &&
-                Objects.equals(businessName, users.businessName) &&
-                Objects.equals(typeOfBusiness, users.typeOfBusiness) &&
-                Objects.equals(workPhone, users.workPhone) &&
-                Objects.equals(personalPhone, users.personalPhone) &&
-                Objects.equals(businessStreetAddress, users.businessStreetAddress) &&
-                Objects.equals(businessCity, users.businessCity) &&
-                Objects.equals(businessState, users.businessState) &&
-                Objects.equals(businessZip, users.businessZip) &&
-                Objects.equals(businessCountry, users.businessCountry) &&
-                Objects.equals(tasks, users.tasks);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(userId, firstName, lastName, roleType, email, password, businessName, typeOfBusiness, workPhone, personalPhone, businessStreetAddress, businessCity, businessState, businessZip, businessCountry, alreadyTexted, firstTimeLogIn, tasks);
-    }
-
-    @Override
-    public String toString() {
-        return "Users{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", roleType='" + roleType + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", businessName='" + businessName + '\'' +
-                ", typeOfBusiness='" + typeOfBusiness + '\'' +
-                ", workPhone='" + workPhone + '\'' +
-                ", personalPhone='" + personalPhone + '\'' +
-                ", businessStreetAddress='" + businessStreetAddress + '\'' +
-                ", businessCity='" + businessCity + '\'' +
-                ", businessState='" + businessState + '\'' +
-                ", businessZip='" + businessZip + '\'' +
-                ", businessCountry='" + businessCountry + '\'' +
-                ", alreadyTexted=" + alreadyTexted +
-                ", firstTimeLogIn=" + firstTimeLogIn +
-                '}';
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Users other = (Users) obj;
+		if (alreadyTexted != other.alreadyTexted)
+			return false;
+		if (businessCity == null) {
+			if (other.businessCity != null)
+				return false;
+		} else if (!businessCity.equals(other.businessCity))
+			return false;
+		if (businessCountry == null) {
+			if (other.businessCountry != null)
+				return false;
+		} else if (!businessCountry.equals(other.businessCountry))
+			return false;
+		if (businessName == null) {
+			if (other.businessName != null)
+				return false;
+		} else if (!businessName.equals(other.businessName))
+			return false;
+		if (businessState == null) {
+			if (other.businessState != null)
+				return false;
+		} else if (!businessState.equals(other.businessState))
+			return false;
+		if (businessStreetAddress == null) {
+			if (other.businessStreetAddress != null)
+				return false;
+		} else if (!businessStreetAddress.equals(other.businessStreetAddress))
+			return false;
+		if (businessZip == null) {
+			if (other.businessZip != null)
+				return false;
+		} else if (!businessZip.equals(other.businessZip))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		if (tasks == null) {
+			if (other.tasks != null)
+				return false;
+		} else if (!tasks.equals(other.tasks))
+			return false;
+		if (userId == null) {
+			if (other.userId != null)
+				return false;
+		} else if (!userId.equals(other.userId))
+			return false;
+		if (workPhone == null) {
+			if (other.workPhone != null)
+				return false;
+		} else if (!workPhone.equals(other.workPhone))
+			return false;
+		return true;
+	}
+  	
 }
