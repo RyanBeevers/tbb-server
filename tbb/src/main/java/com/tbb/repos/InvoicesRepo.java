@@ -15,4 +15,5 @@ public interface InvoicesRepo extends JpaRepository <Invoices, Integer>{
 
     Invoices findInvoicesByInvoiceId(Integer invoiceId);
 
+    List<Invoices> getInvoicesByAdminId (String adminId);
 }

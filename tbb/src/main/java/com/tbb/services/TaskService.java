@@ -50,4 +50,9 @@ public class TaskService {
 	public List<Tasks> removeTask(Integer id) {
 		return repo.deleteTasksByTaskId(id);
 	}
+	
+    public List<Tasks> findAllByAdminId(String adminId){
+        return repo.findAllByAdminId(adminId);
+    }
+
 }

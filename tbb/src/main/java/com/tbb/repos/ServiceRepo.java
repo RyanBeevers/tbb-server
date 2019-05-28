@@ -10,6 +10,7 @@ import com.tbb.models.Services;
 	@Repository
 	public interface ServiceRepo extends JpaRepository <Services, Integer>{
 
-	List<Services> deleteServicesByServiceId(Integer serviceId);
+		List<Services> getServicesByAdminId(String adminId);
 	
+		List<Services> deleteServicesByServiceId(Integer serviceId);
 }

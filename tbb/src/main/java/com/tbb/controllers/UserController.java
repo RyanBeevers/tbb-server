@@ -40,33 +40,8 @@ public class UserController {
 		return new ResponseEntity<List<Users>>(users, HttpStatus.OK);
 	}
 	
-//	@PostMapping(path="/login", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-//	public ResponseEntity<Users> login(@RequestBody Users newUser){
-//		Users user = service.findUserByEmail(newUser.getEmail());
-//		if (user == null) {
-//			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-//		}
-//		String password = newUser.getPassword();
-//		String password1 = user.getPassword();
-//		System.out.println();
-//		if(!password.equals(password1)) {
-//			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-//		}
-//		return new ResponseEntity<>(user, HttpStatus.OK);
-//	}
-	
-//	@PostMapping(path="/checkEmail", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-//	public ResponseEntity<Users> getEmail(@RequestBody Users newUser){
-//		Users user = service.findUserByEmail(newUser.getEmail());
-//		if (user == null) {
-//			return new ResponseEntity<>(HttpStatus.OK);
-//		}
-//		return new ResponseEntity<>(user, HttpStatus.ALREADY_REPORTED);
-//	}
-	
 	@PostMapping(path="/getUserByEmail", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Users> getUserByEmail(@RequestBody Users newUser){
-		System.out.println(newUser);
 		Users user = service.findUserByEmail(newUser.getEmail());
 		if (user == null) {
 			return new ResponseEntity<>(user, HttpStatus.ALREADY_REPORTED);
@@ -76,7 +51,6 @@ public class UserController {
 	
 	@PostMapping(path="/register", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Users> addUser( @RequestBody Users newUser){
-//		newUser.setAlreadyTexted(false);
 		Users user = service.addUser(newUser);
 		if (user == null) {
 			return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
@@ -86,13 +60,49 @@ public class UserController {
 	
 	@PostMapping(path="/update", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Users> updateUser( @RequestBody Users newUser){
-//		if(!newUser.getRoleType().equals("admin")) {
-//			newUser.setRoleType("user");
-//		}
 		Users user = service.updateUser(newUser);
 		if (user == null) {
 			return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<>(user, HttpStatus.CREATED);
+	}
+	
+	@PostMapping(path="/verifyAdmin", consumes=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Boolean> verifyAdmin( @RequestBody String passphrase){
+		System.out.println(passphrase);
+		
+		if (passphrase.equals("tbb-admin-2019")){
+			return new ResponseEntity<>(true, HttpStatus.OK);
+		}
+		else {
+		return new ResponseEntity<>(false, HttpStatus.OK);
+		}
+	}
+	
+	@GetMapping(path="/getAdmins", produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Users>> getAdmins(){
+		List<Users> users = service.getAdmins();
+		if (users == null) {
+			return new ResponseEntity<>(users, HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Users>>(users, HttpStatus.OK);
+	}
+	
+	@PostMapping(path="/getMyAdmin", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Users> getMyAdmin( @RequestBody String passphrase){
+		Users user = service.getMyAdmin(passphrase);
+		if (user == null) {
+			return new ResponseEntity<>(user, HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<Users>(user, HttpStatus.OK);
+	}
+	
+	@PostMapping(path="/getMyUsers", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Users>> getMyUsers( @RequestBody String passphrase){
+		List<Users> users = service.getMyUsers(passphrase);
+		if (users == null) {
+			return new ResponseEntity<List<Users>>(users, HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Users>>(users, HttpStatus.OK);
 	}
 }

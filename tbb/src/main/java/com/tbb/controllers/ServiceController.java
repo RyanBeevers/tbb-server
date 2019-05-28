@@ -30,12 +30,22 @@ public class ServiceController {
 	public ServiceController (ServiceService serviceService) {
 		this.service = serviceService;
 	}
-	
-	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Services>> getServices(){
-		List<Services> services = service.getServices();
+//	
+//	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<List<Services>> getServices(){
+//		List<Services> services = service.getServices();
+//		if (services == null) {
+//			return new ResponseEntity<>(services, HttpStatus.NO_CONTENT);
+//		}
+//		return new ResponseEntity<List<Services>>(services, HttpStatus.OK);
+//	}
+//	
+	@PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Services>> getServices( @RequestBody String adminId){
+		System.out.println(adminId);
+		List<Services> services = service.getServicesByAdminId(adminId);
 		if (services == null) {
-			return new ResponseEntity<>(services, HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<List<Services>>(services, HttpStatus.OK);
 	}

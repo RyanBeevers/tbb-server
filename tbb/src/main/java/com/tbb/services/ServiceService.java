@@ -18,8 +18,8 @@ public class ServiceService {
 		this.repo = serviceRepo;
 	}
 	
-	public List<Services> getServices(){
-		return repo.findAll();
+	public List<Services> getServicesByAdminId(String adminId){
+		return repo.getServicesByAdminId(adminId);
 	}
 	
 	@Transactional

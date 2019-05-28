@@ -19,5 +19,6 @@ public interface TaskRepo extends JpaRepository <Tasks, Integer> {
     List<Tasks> findAllByInvoices(Invoices invoice);
     
     List<Tasks> deleteTasksByTaskId(Integer serviceId);
-
+    
+    List<Tasks> findAllByAdminId(String adminId);
 }

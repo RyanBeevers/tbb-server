@@ -36,6 +36,9 @@ public class InvoicesService {
     public Invoices updateInvoice(Invoices invoice){
         return repo.save(invoice);
     }
+    public List<Invoices> getInvoicesByAdminId(String adminId){
+        return repo.getInvoicesByAdminId(adminId);
+    }
 
 
 }

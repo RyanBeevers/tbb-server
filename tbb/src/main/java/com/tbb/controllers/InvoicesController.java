@@ -48,6 +48,15 @@ public class InvoicesController {
         }
         return new ResponseEntity<List<Invoices>>(invoices, HttpStatus.OK);
     }
+    
+    @PostMapping(path="/getByAdminId", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Invoices>> getInvoicesByUser(@RequestBody String adminId){
+        List<Invoices> invoices = service.getInvoicesByAdminId(adminId);
+        if (invoices == null) {
+            return new ResponseEntity<List<Invoices>>(invoices, HttpStatus.ALREADY_REPORTED);
+        }
+        return new ResponseEntity<List<Invoices>>(invoices, HttpStatus.OK);
+    }
 
     @PostMapping(path="/getByInvoiceId", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Invoices> getInvoicesByInvoiceId(@RequestBody Invoices invoice){

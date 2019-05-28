@@ -66,6 +66,9 @@ public class Tasks {
     
     @Column(name="task_completed_date")
     private String taskCompletedDate;
+    
+    @Column(name="admin_id")
+    private String adminId;
 
     @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name="invoice_id")
@@ -82,7 +85,7 @@ public class Tasks {
 	public Tasks(@NotNull String taskName, @NotNull String taskDesc, @NotNull String taskSubmittedDate,
 			@NotNull String taskDueDate, @NotNull String taskStatus, @NotNull double taskEstimatedCost,
 			double taskFinalCost, @NotNull double taskEstimatedEffort, double taskActualEffort,
-			@NotNull double taskCostPerHour, String taskCompletedDate) {
+			@NotNull double taskCostPerHour, String taskCompletedDate, String adminId) {
 		super();
 		this.taskName = taskName;
 		this.taskDesc = taskDesc;
@@ -95,6 +98,7 @@ public class Tasks {
 		this.taskActualEffort = taskActualEffort;
 		this.taskCostPerHour = taskCostPerHour;
 		this.taskCompletedDate = taskCompletedDate;
+		this.adminId = adminId;
 	}
 
 	public int getTaskId() {
@@ -193,6 +197,14 @@ public class Tasks {
 		this.taskCompletedDate = taskCompletedDate;
 	}
 
+	public String getAdminId() {
+		return adminId;
+	}
+
+	public void setAdminId(String adminId) {
+		this.adminId = adminId;
+	}
+
 	public Invoices getInvoices() {
 		return invoices;
 	}
@@ -213,6 +225,7 @@ public class Tasks {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((adminId == null) ? 0 : adminId.hashCode());
 		result = prime * result + ((invoices == null) ? 0 : invoices.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(taskActualEffort);
@@ -245,6 +258,11 @@ public class Tasks {
 		if (getClass() != obj.getClass())
 			return false;
 		Tasks other = (Tasks) obj;
+		if (adminId == null) {
+			if (other.adminId != null)
+				return false;
+		} else if (!adminId.equals(other.adminId))
+			return false;
 		if (invoices == null) {
 			if (other.invoices != null)
 				return false;
@@ -302,11 +320,12 @@ public class Tasks {
 
 	@Override
 	public String toString() {
-		return "Tasks [taskName=" + taskName + ", taskDesc=" + taskDesc + ", taskSubmittedDate=" + taskSubmittedDate
-				+ ", taskDueDate=" + taskDueDate + ", taskStatus=" + taskStatus + ", taskEstimatedCost="
-				+ taskEstimatedCost + ", taskFinalCost=" + taskFinalCost + ", taskEstimatedEffort="
-				+ taskEstimatedEffort + ", taskActualEffort=" + taskActualEffort + ", taskCostPerHour="
-				+ taskCostPerHour + ", taskCompletedDate=" + taskCompletedDate + "]";
+		return "Tasks [taskId=" + taskId + ", taskName=" + taskName + ", taskDesc=" + taskDesc + ", taskSubmittedDate="
+				+ taskSubmittedDate + ", taskDueDate=" + taskDueDate + ", taskStatus=" + taskStatus
+				+ ", taskEstimatedCost=" + taskEstimatedCost + ", taskFinalCost=" + taskFinalCost
+				+ ", taskEstimatedEffort=" + taskEstimatedEffort + ", taskActualEffort=" + taskActualEffort
+				+ ", taskCostPerHour=" + taskCostPerHour + ", taskCompletedDate=" + taskCompletedDate + ", adminId="
+				+ adminId + "]";
 	}
 
 

@@ -37,4 +37,16 @@ public class UserService {
 	public Users updateUser(Users user) {
 		return repo.save(user);
 	}
+	
+	public List<Users> getAdmins() {
+		return repo.findUsersByAdminTrue();
+	}
+	
+	public Users getMyAdmin(String passphrase) {
+		return repo.findUsersByMyAdminPassphrase(passphrase);
+	}
+	
+	public List<Users> getMyUsers(String passphrase) {
+		return repo.findUsersByAdminPassphrase(passphrase);
+	}
 }

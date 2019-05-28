@@ -39,6 +39,16 @@ public class TaskController {
         }
         return new ResponseEntity<List<Tasks>>(tasks, HttpStatus.OK);
     }
+    
+    @PostMapping(path="/getTasksByAdminId", consumes= MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Tasks>> getTasksByAdminId(@RequestBody String adminId){
+    	System.out.println(adminId);
+        List<Tasks> tasks = service.findAllByAdminId(adminId);
+        if (tasks == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<List<Tasks>>(tasks, HttpStatus.OK);
+    }
 
     @PostMapping(path="/getTasksByUserId", consumes= MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Tasks>> getTasksByUserId(@RequestBody Users user){
