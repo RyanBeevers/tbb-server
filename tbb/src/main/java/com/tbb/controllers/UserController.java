@@ -19,9 +19,9 @@ import com.tbb.models.Users;
 import com.tbb.services.UserService;
 import com.tbb.models.ChallengeQuestions;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/customer")
+@CrossOrigin
 public class UserController {
 
 	private UserService service;
